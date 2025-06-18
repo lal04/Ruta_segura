@@ -1,18 +1,6 @@
-
 <template>
-  <header>
-    <TopMenu/>
-  </header>
-<main>
-
-
-</main>
-<footer>
-
-</footer>
+  <RouterView />
 </template>
-
-  <script setup lang="ts">
-  import { RouterLink, RouterView } from 'vue-router'
-  import TopMenu from './modules/common/components/TopMenu.vue';
-  </script>
+<script setup lang="ts">
+import { RouterView } from 'vue-router';
+</script>

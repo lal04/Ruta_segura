@@ -1,10 +1,14 @@
 <template>
   <!-- top menu -->
-  <TopMenu />
+  <header>
+    <TopMenu />
+  </header>
   <!-- sidebar -->
 
+  <SiteBar />
+
   <!-- main -->
-  <main>
+  <main class="flex">
     <RouterView />
   </main>
   <!-- footer -->
@@ -14,6 +18,7 @@
 
 <script setup lang="ts">
 import BotonFooter from '@/modules/common/components/BotonFooter.vue';
+import SiteBar from '@/modules/common/components/SiteBar.vue';
 import TopMenu from '@/modules/common/components/TopMenu.vue';
 import { RouterView } from 'vue-router';
 </script>
