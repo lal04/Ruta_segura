@@ -5,12 +5,11 @@
   </header>
   <!-- sidebar -->
 
-  <SiteBar />
+  <SiteBar>
+    <RouterView />
+  </SiteBar>
 
   <!-- main -->
-  <main class="flex">
-    <RouterView />
-  </main>
   <!-- footer -->
 
   <BotonFooter />

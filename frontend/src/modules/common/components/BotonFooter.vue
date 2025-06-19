@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="fixed bottom-0 left-0 right-0 footer footer-center bg-base-300 text-base-content p-4"
+    class="fixed bottom-0 left-0 right-0 footer footer-center bg-base-300 text-base-content p-4 lg:z-10"
   >
     <aside>
       <p>Copyright © {{ new Date().getFullYear() }} - Creado por SynergySoft EIRL</p>
