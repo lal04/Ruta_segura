@@ -14,6 +14,11 @@ const router = createRouter({
           path: '/',
           component: HomeView,
         },
+        {
+          path: '/formulario',
+          name: 'formulario',
+          component: () => import('@/modules/ruta/views/FormView.vue'),
+        },
       ],
     },
   ],
