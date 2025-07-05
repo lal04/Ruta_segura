@@ -19,3 +19,4 @@ class Incidente(models.Model):
 class ZonaSegura(models.Model):
     nombre=models.CharField(max_length=100)
     area=models.PointField(srid=4326)
+

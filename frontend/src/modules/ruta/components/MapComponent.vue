@@ -1,7 +1,6 @@
 <template>
   <div class="p-4">
-    <div class="text-xl font-bold mb-4 text-center">Mapa de Google</div>
-    <div ref="mapRef" class="rounded-box shadow-lg w-[500px] h-[500px]"></div>
+    <div ref="mapRef" class="rounded-box shadow-lg w-full h-96"></div>
   </div>
 </template>
 
@@ -14,12 +13,12 @@ const mapRef = ref<HTMLElement | null>(null);
 onMounted(async () => {
   if (!mapRef.value) return;
 
-  // Carga dinámica de la API
+  // Carga dinamica de la API
   if (!window.google?.maps) {
     await loadGoogleMapsScript(import.meta.env.VITE_GOOGLE_MAPS_API_KEY);
   }
 
-  const initialPosition = { lat: 40.7128, lng: -74.006 };
+  const initialPosition = { lat: -12.04318, lng: -77.02824 };
   new MapManager(mapRef.value, initialPosition);
 });
 

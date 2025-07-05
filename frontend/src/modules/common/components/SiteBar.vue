@@ -18,7 +18,7 @@
           <RouterLink to="/">Inicio</RouterLink>
         </li>
         <li>
-          <RouterLink :to="{ name: 'formulario' }">Formulario</RouterLink>
+          <RouterLink :to="{ name: 'formulario' }">Punto seguro</RouterLink>
         </li>
       </ul>
     </div>
