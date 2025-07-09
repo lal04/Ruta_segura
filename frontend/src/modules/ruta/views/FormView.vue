@@ -56,6 +56,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import MapComponent from '../components/MapComponent.vue';
+import axios from 'axios';
 
 const nombre = ref('');
 const descripcion = ref('');
@@ -65,6 +66,7 @@ const error = ref('');
 // Recibe lat/lng del componente de mapa
 function setUbicacion(coords: { lat: number; lng: number }) {
   ubicacion.value = coords;
+  console.log('Ubicación capturada desde el mapa:', coords);
 }
 
 async function submitForm() {
@@ -84,13 +86,16 @@ async function submitForm() {
     },
   };
 
-  console.log('Datos a enviar:', payload);
+  // console.log('Datos a enviar:', payload);
 
   // Aquí puedes hacer el POST real:
-  // await fetch('/api/puntos', {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify(payload)
-  // })
+  try {
+    const response = await axios.post('http://localhost:8000/api/puntos/', payload);
+    console.log('Punto guardado con éxito:', response.data);
+    // Opcional: limpiar formulario o mostrar éxito
+  } catch (err: Any) {
+    console.error('Error al enviar:', err);
+    error.value = err.response?.data?.detail || 'Ocurrió un error al enviar los datos.';
+  }
 }
 </script>

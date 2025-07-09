@@ -1,11 +1,17 @@
 export default class MapManager {
   private map: google.maps.Map;
-  private markers: google.maps.marker.AdvancedMarkerElement[] = [];
+  private markers: google.maps.Marker[] = [];
   private directionsService: google.maps.DirectionsService;
   private directionsRenderer: google.maps.DirectionsRenderer;
+  private onClickCallback?: (coords: { lat: number; lng: number }) => void;
 
-  constructor(mapElement: HTMLElement, initialPosition: { lat: number; lng: number }) {
-    // Inicializar el mapa
+  constructor(
+    mapElement: HTMLElement,
+    initialPosition: { lat: number; lng: number },
+    onClickCallback?: (coords: { lat: number; lng: number }) => void
+  ) {
+    this.onClickCallback = onClickCallback;
+
     this.map = new google.maps.Map(mapElement, {
       center: initialPosition,
       zoom: 12,
@@ -19,25 +25,21 @@ export default class MapManager {
   }
 
   private setupEventListeners(): void {
-    // Agregar marcador al hacer click
     this.map.addListener('click', (event: google.maps.MapMouseEvent) => {
+      const lat = event.latLng!.lat();
+      const lng = event.latLng!.lng();
       this.addMarker(event.latLng!);
-      console.log('Coordenadas:', event.latLng!.lat(), event.latLng!.lng());
 
-      // Guardar en localStorage (ejemplo)
-      localStorage.setItem(
-        'lastPosition',
-        JSON.stringify({
-          lat: event.latLng!.lat(),
-          lng: event.latLng!.lng(),
-        }),
-      );
+      console.log('Coordenadas:', lat, lng);
+
+      if (this.onClickCallback) {
+        this.onClickCallback({ lat, lng });
+      }
     });
   }
 
-  // Agregar marcador
   public addMarker(position: google.maps.LatLng | google.maps.LatLngLiteral, title?: string): void {
-    const marker = new google.maps.marker.AdvancedMarkerElement({
+    const marker = new google.maps.Marker({
       position,
       map: this.map,
       title: title || 'Nuevo marcador',
@@ -46,7 +48,6 @@ export default class MapManager {
     this.markers.push(marker);
   }
 
-  // Trazar ruta entre dos puntos
   public async drawRoute(
     origin: google.maps.LatLngLiteral,
     destination: google.maps.LatLngLiteral,
@@ -65,7 +66,6 @@ export default class MapManager {
     }
   }
 
-  // Dibujar círculo alrededor de un punto
   public drawCircle(center: google.maps.LatLngLiteral, radius: number): google.maps.Circle {
     return new google.maps.Circle({
       strokeColor: '#FF0000',
@@ -79,13 +79,11 @@ export default class MapManager {
     });
   }
 
-  // Limpiar marcadores
   public clearMarkers(): void {
-    this.markers.forEach((marker) => (marker.map = null));
+    this.markers.forEach((marker) => marker.setMap(null));
     this.markers = [];
   }
 
-  // Centrar el mapa en una posición
   public panTo(position: google.maps.LatLngLiteral): void {
     this.map.panTo(position);
   }
