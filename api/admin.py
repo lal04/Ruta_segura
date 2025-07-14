@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import PuntoSeguro
+from .models import PuntoSeguro, Incidente
 
 # Register your models here.
-admin.site.register(PuntoSeguro)
+admin.site.register(Incidente)

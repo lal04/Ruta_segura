@@ -8,7 +8,7 @@ export default class MapManager {
   constructor(
     mapElement: HTMLElement,
     initialPosition: { lat: number; lng: number },
-    onClickCallback?: (coords: { lat: number; lng: number }) => void
+    onClickCallback?: (coords: { lat: number; lng: number }) => void,
   ) {
     this.onClickCallback = onClickCallback;
 
@@ -29,8 +29,6 @@ export default class MapManager {
       const lat = event.latLng!.lat();
       const lng = event.latLng!.lng();
       this.addMarker(event.latLng!);
-
-      console.log('Coordenadas:', lat, lng);
 
       if (this.onClickCallback) {
         this.onClickCallback({ lat, lng });

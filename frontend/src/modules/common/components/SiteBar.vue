@@ -18,7 +18,9 @@
           <RouterLink to="/">Inicio</RouterLink>
         </li>
         <li>
-          <RouterLink :to="{ name: 'formulario' }">Punto seguro</RouterLink>
+          <RouterLink :to="{ name: 'puntos' }">Punto seguro</RouterLink>
+          <RouterLink :to="{ name: 'incidentes' }">Incidente</RouterLink>
+          <RouterLink :to="{ name: 'zona' }">Zona segura</RouterLink>
         </li>
       </ul>
     </div>

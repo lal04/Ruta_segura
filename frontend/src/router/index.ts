@@ -15,9 +15,34 @@ const router = createRouter({
           component: HomeView,
         },
         {
-          path: '/formulario',
-          name: 'formulario',
-          component: () => import('@/modules/ruta/views/FormView.vue'),
+          path: '/puntos',
+          name: 'puntos',
+          component: () => import('@/modules/ruta/views/puntoSeguro/PuntosListView.vue'),
+        },
+        {
+          path: '/formpuntos',
+          name: 'formpuntos',
+          component: () => import('@/modules/ruta/views/puntoSeguro/PuntosFormView.vue'),
+        },
+        {
+          path: '/incidentes',
+          name: 'incidentes',
+          component: () => import('@/modules/ruta/views/Incidente/IncidenteListView.vue'),
+        },
+        {
+          path: '/formincidente',
+          name: 'formincidente',
+          component: () => import('@/modules/ruta/views/Incidente/IncidenteFormView.vue'),
+        },
+        {
+          path: '/zona',
+          name: 'zona',
+          component: () => import('@/modules/ruta/views/ZonaSegura/ZonaListView.vue'),
+        },
+        {
+          path: '/formzona',
+          name: 'formzona',
+          component: () => import('@/modules/ruta/views/ZonaSegura/ZonaFormView.vue'),
         },
       ],
     },
